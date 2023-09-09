@@ -1,6 +1,14 @@
 FROM alpine
 MAINTAINER David Personette <dperson@gmail.com>
 
+# mirrors.tuna.tsinghua.edu.cn
+# mirrors.sjtug.sjtu.edu.cn
+
+RUN echo https://mirrors.tuna.tsinghua.edu.cn/alpine/v3.18/main > /etc/apk/repositories; \
+    echo https://mirrors.tuna.tsinghua.edu.cn/alpine/v3.18/community >> /etc/apk/repositories
+
+RUN apk update
+
 # Install samba
 RUN apk --no-cache --no-progress upgrade && \
     apk --no-cache --no-progress add bash samba shadow tini tzdata && \
